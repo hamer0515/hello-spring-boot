@@ -1,0 +1,41 @@
+my:
+  name: forezp
+  age: 12
+
+you:
+  name: hbox
+  age: 13
+  number: ${random.int}
+  uuid: ${random.uuid}
+  max: ${random.int(10)}
+  value: ${random.value}
+  greeting: hi, I'm ${you.name}
+
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springCloud?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
+    username: root
+    password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    database: 1
+management:
+  server:
+    port: 9001
+  endpoints:
+    web:
+      exposure:
+        include: autoconfig,configprops,beans,dump,env,health,info,mappings,metrics,shutdown,trace
+
+  endpoint:
+    shutdown:
+      enabled: true
